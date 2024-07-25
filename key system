@@ -1,0 +1,86 @@
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))() --This Will Load The Script Code
+localPlayer = game.Players.LocalPlayer --This Will Reveal The Player Name
+ local Window = OrionLib:MakeWindow({
+    Name = "Spooky.Hook (KeySystem)", 
+    HidePremium = false, 
+    SaveConfig = true, 
+    ConfigFolder = "OrionTest"
+    IntroText = "Loading Script"
+}) --This Will Load The Script Hub
+
+function MakeScriptHub()
+    loadstring(game:HttpGet ("https://raw.githubusercontent.com/skibiditoiletriz/Spookys-Hitbox-Esp-unobfuscated/main/release"))() --This will load the script
+End
+
+OrionLib:MakeNotification({
+	Name = "Logged In!",
+	Content = "You are logged in as"..Player.Name..".",
+	Image = "rbxassetid://4483345998",
+	Time = 5
+}) --Notification
+
+getgenv().Key = "grw076eiwy7" --Put The Correct Key Here
+getgwnv.KeyInput = "string" --Require For Key To Work
+
+local Tab = Window:MakeTab({
+	Name = "Key",
+ Icon = "rbxassetid://4483345998",
+ PremiumOnly = false
+}) --Making A Tab
+
+Tab:AddTextbox({
+	Name = "Key",
+	Default = "Enter Key",
+	TextDisappear = true,
+	Callback = function(Value)
+		getgenv().KeyInput = Value
+	end	  
+}) --You Will Enter The Key Here
+
+Tab:AddTextbox({
+	Name = "Check Key",
+	Callback = function(Value)
+  if getgenv().KeyInput == getgenv().Key then
+     OrionLib:MakeNotification({ 
+       Name = "Checking Key",
+       Content = "Checking The Key You Entered",
+       Image = "rbxassetid://4483345998",
+       Time = 5
+    })
+    wait(2) 
+    OrionLib:MakeNotification({
+      Name = "Correct Key!",
+     	Content = "Checking The Key You Entered",
+     	Image = "rbxassetid://4483345998",
+     	Time = 5
+    })
+    wait(1)
+    OrionLib:Destroy()
+    wait(3)
+    MakeScriptHub()
+   else
+    OrionLib:MakeNotification({
+      Name = "Checking Key",
+      Content = "Checking The Key You Entered",
+      Image = "rbxassetid://4483345998",
+     	Time = 5
+    })
+    wait(2)
+    OrionLib:MakeNotification({
+       Name = "Incorrect Key",
+      Content = "The Key You Entered Is Incorrect",
+      Image = "rbxassetid://4483345998",
+     	Time = 5
+    })
+  end
+ end
+}) --This Will Check The Key You Entered
+
+Tab:AddButton({
+  Name = "Copy Key",
+	 Callback = function()
+       setclipboard("https://discord.gg/Rr8eAaT57h") --This Will Copy The Link Of The Key
+    end
+})
+
+OrionLib:Init() --Require If The Script Is Done
